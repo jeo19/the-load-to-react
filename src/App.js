@@ -20,6 +20,8 @@ const list = [
 ];
 class App extends Component {
   render() {
+    const robin = new Developer("Robin", "wieruch");
+    console.log(robin.getName());
     return (
       <div className="App">
         {list.map(item => (
@@ -36,5 +38,13 @@ class App extends Component {
     );
   }
 }
-
+class Developer {
+  constructor(firstname, lastname) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+  }
+  getName() {
+    return this.firstname + " " + this.lastname;
+  }
+}
 export default App;
