@@ -20,7 +20,7 @@ const list = [
 ];
 class App extends Component {
   render() {
-    const robin = new Developer("Robin", "wieruch");
+    const robin = new Developer("Dan", "Abramov");
     console.log(robin.getName());
     return (
       <div className="App">
