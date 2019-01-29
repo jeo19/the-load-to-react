@@ -53,33 +53,10 @@ class App extends Component {
     //End
     return (
       <div className="App">
-        <form>
-          <input
-            type="Text"
-            onChange={this.onSearchChange}
-            value={searchTerm}
-          />
-        </form>
-        {list.filter(isSearched(this.state.searchTerm)).map(item => (
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-            {/* The added section Start */}
-            <span>
-              <button
-                onClick={() => this.onDismiss(item.objectID)}
-                type="button"
-              >
-                dismiss
-              </button>
-            </span>
-            {/* End */}
-          </div>
-        ))}
+        {/* Spilit up Components Start */}
+        <Search value={searchTerm} onChange={this.onSearchChange} />
+        <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
+        {/* End */}
       </div>
     );
   }
@@ -96,6 +73,42 @@ class Developer {
   }
   getName() {
     return this.firstname + " " + this.lastname;
+  }
+}
+class Search extends Component {
+  render() {
+    const { value, onChange } = this.props;
+    return (
+      <form>
+        <input type="Text" onChange={onChange} value={value} />
+      </form>
+    );
+  }
+}
+class Table extends Component {
+  render() {
+    const { list, pattern, onDismiss } = this.props;
+    return (
+      <div>
+        {list.filter(isSearched(pattern)).map(item => (
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+            {/* The added section Start */}
+            <span>
+              <button onClick={() => onDismiss(item.objectID)} type="button">
+                dismiss
+              </button>
+            </span>
+            {/* End */}
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 export default App;
