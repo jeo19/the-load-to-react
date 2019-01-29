@@ -54,9 +54,8 @@ class App extends Component {
     return (
       <div className="App">
         {/* Spilit up Components Start */}
-        <Search value={searchTerm} onChange={this.onSearchChange}>
-          Search
-        </Search>
+        <Search value={searchTerm} onChange={this.onSearchChange} />
+        Search
         <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
         {/* End */}
       </div>
