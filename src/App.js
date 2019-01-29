@@ -19,6 +19,13 @@ const list = [
   }
 ];
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: list
+    };
+  }
+
   render() {
     const robin = new Developer("Dan", "Abramov");
     console.log(robin.getName());
