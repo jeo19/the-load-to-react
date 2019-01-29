@@ -31,7 +31,7 @@ class App extends Component {
     console.log(robin.getName());
     return (
       <div className="App">
-        {list.map(item => (
+        {this.state.list.map(item => (
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
