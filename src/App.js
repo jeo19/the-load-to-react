@@ -44,6 +44,9 @@ class App extends Component {
   };
   /* End */
   render() {
+    //Destructuring an Object and Array
+    const { searchTerm, list } = this.state;
+    //End
     // Ex:Use class object start//
     const robin = new Developer("Dan", "Abramov");
     console.log(robin.getName());
@@ -51,9 +54,13 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <input type="Text" onChange={this.onSearchChange} />
+          <input
+            type="Text"
+            onChange={this.onSearchChange}
+            value={searchTerm}
+          />
         </form>
-        {this.state.list.filter(isSearched(this.state.searchTerm)).map(item => (
+        {list.filter(isSearched(this.state.searchTerm)).map(item => (
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
