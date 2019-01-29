@@ -37,8 +37,10 @@ class App extends Component {
   };
   /* End */
   render() {
+    // Ex:Use class object start//
     const robin = new Developer("Dan", "Abramov");
     console.log(robin.getName());
+    //End
     return (
       <div className="App">
         {this.state.list.map(item => (
@@ -51,11 +53,11 @@ class App extends Component {
             <span>{item.points}</span>
             {/* The added section Start */}
             <span>
-              <button
-                onClick={() => this.onDismiss(item.objectID)}
-                type="button"
-              >
+              <button onClick={() => console.log(item.objectID)} type="button">
                 dismiss
+              </button>
+              <button onClick={console.log(item.author)} type="button">
+                dismiss once
               </button>
             </span>
             {/* End */}
