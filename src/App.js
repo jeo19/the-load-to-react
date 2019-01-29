@@ -54,7 +54,9 @@ class App extends Component {
     return (
       <div className="App">
         {/* Spilit up Components Start */}
-        <Search value={searchTerm} onChange={this.onSearchChange} />
+        <Search value={searchTerm} onChange={this.onSearchChange}>
+          Search
+        </Search>
         <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
         {/* End */}
       </div>
@@ -77,9 +79,10 @@ class Developer {
 }
 class Search extends Component {
   render() {
-    const { value, onChange } = this.props;
+    const { value, onChange, children } = this.props;
     return (
       <form>
+        {children}&nbsp;
         <input type="Text" onChange={onChange} value={value} />
       </form>
     );
