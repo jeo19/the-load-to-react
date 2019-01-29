@@ -22,12 +22,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list
+      list,
+      searchTerm: ""
     };
     /* The added section Start */
+    this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     /* End */
   }
+  onSearchChange = event => {
+    this.setState({
+      searchTerm: event.target.value
+    });
+  };
   /* The added section Start */
   onDismiss = id => {
     const isNotId = item => item.objectID !== id;
@@ -43,7 +50,10 @@ class App extends Component {
     //End
     return (
       <div className="App">
-        {this.state.list.map(item => (
+        <form>
+          <input type="Text" onChange={this.onSearchChange} />
+        </form>
+        {this.state.list.filter(isSearched(this.state.searchTerm)).map(item => (
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -53,11 +63,11 @@ class App extends Component {
             <span>{item.points}</span>
             {/* The added section Start */}
             <span>
-              <button onClick={() => console.log(item.objectID)} type="button">
+              <button
+                onClick={() => this.onDismiss(item.objectID)}
+                type="button"
+              >
                 dismiss
-              </button>
-              <button onClick={console.log(item.author)} type="button">
-                dismiss once
               </button>
             </span>
             {/* End */}
@@ -67,6 +77,11 @@ class App extends Component {
     );
   }
 }
+// Defined HOF(High Order Function)
+const isSearched = searchTerm => item =>
+  item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+//End
 class Developer {
   constructor(firstname, lastname) {
     this.firstname = firstname;
