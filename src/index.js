@@ -8,7 +8,6 @@ ReactDOM.render(<App />, document.getElementById("root"));
 if (module.hot) {
   module.hot.accept();
 }
-console.log("Wellcome to react111.");
 // Apply Hot module end
 
 // If you want your app to work offline and load faster, you can change
