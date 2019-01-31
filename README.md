@@ -1,3 +1,26 @@
+> # LifeCycle of React
+
+Overall, the mounting process has 4 lifecycle methods, invoked in the following order:
+
+- constructor()
+- getDerivedStateFromProps()
+- render()
+- componentDidMount()
+
+For the update lifecycle of a component when the state or the props change, there are 5 lifecycle methods, in the following order:
+
+- getDerivedStateFromProps()
+- shouldComponentUpdate()
+- render()
+- getSnapshotBeforeUpdate()
+- componentDidUpdate()
+
+Lastly, there is the unmounting lifecycle. It has only one lifecycle method:
+
+- componentWillUnmount()
+
+> # General Setup
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
