@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       results: null,
       searchKey: "",
-      searchTerm: DEFAULT_QUERY
+      searchTerm: DEFAULT_QUERY,
+      error: null
     };
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
@@ -77,7 +78,7 @@ class App extends Component {
     )
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(error => error);
+      .catch(error => this.setState({ error }));
   }
   componentDidMount() {
     const { searchTerm } = this.state;
@@ -87,7 +88,7 @@ class App extends Component {
     this.fetchSearchTopStories(searchTerm);
   }
   render() {
-    const { searchKey, results, searchTerm } = this.state;
+    const { searchKey, results, searchTerm, error } = this.state;
     console.log(results);
     const page =
       (results && results[searchKey] && results[searchKey].page) || 0;
@@ -108,21 +109,21 @@ class App extends Component {
             Search
           </Search>
         </div>
-        {/* {result ? (
-          <Table
-            list={result.hits}
-            pattern={searchTerm}
-            onDismiss={this.onDismiss}
-          />
-        ) : null} */}
-        <Table list={list} onDismiss={this.onDismiss} />
-        <div className="interactions">
-          <Button
-            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
-          >
-            More
-          </Button>
-        </div>
+        {error ? (
+          <div className="interactions">
+            <p>No results for your search. </p>
+          </div>
+        ) : (
+          <div className="interactions">
+            <Table list={list} onDismiss={this.onDismiss} />
+
+            <Button
+              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
+            >
+              More
+            </Button>
+          </div>
+        )}
         {/* End */}
       </div>
     );
