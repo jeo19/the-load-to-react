@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App, { Search, Button, Table } from "./App";
 import renderer from "react-test-renderer";
+import Enzyme, { shallow } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+Enzyme.configure({ adapter: new Adapter() });
 describe("App", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
@@ -32,13 +35,23 @@ describe("Table", () => {
     ]
   };
 
-  it("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<Table {...props} />, div);
+  it("Shows two item in list", () => {
+    const element = shallow(<Table {...props} />);
+    expect(element.find(".table-row").length).toBe(2);
   });
 
   test("has a valid snapshot", () => {
     const component = renderer.create(<Table {...props} />);
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
+describe("Button", () => {
+  it("render a Button without crashing", () => {
+    shallow(<Button />);
+  });
+  test("has a valid snapshot", () => {
+    const component = renderer.create(<Button />);
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
