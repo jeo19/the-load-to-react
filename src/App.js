@@ -180,8 +180,4 @@ const smallColumn = {
 };
 //End
 export default App;
-export {
-  Button,
-  Search,
-  Table
-}
+export { Button, Search, Table };
