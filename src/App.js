@@ -96,7 +96,7 @@ class App extends Component {
   }
   render() {
     const { searchKey, results, searchTerm, error } = this.state;
-    console.log(results);
+    // console.log(results);
     const page =
       (results && results[searchKey] && results[searchKey].page) || 0;
     // if (!result) {

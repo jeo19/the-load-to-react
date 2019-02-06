@@ -40,6 +40,12 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+> ### The module install for use the Enzyme test library
+
+```sh
+npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
+```
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
