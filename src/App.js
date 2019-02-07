@@ -10,6 +10,7 @@ import {
   PARAM_SEARCH,
   PARAM_HPP
 } from "./constants";
+import PropTypes from "prop-types";
 class App extends Component {
   _isMounted = false;
   constructor(props) {
@@ -169,6 +170,34 @@ const Button = ({ onClick, className, children }) => (
     {children}
   </button>
 );
+// Typechecking with PropTypes Start
+Button.propTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+Button.defaultProps = {
+  className: ""
+};
+Table.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number
+    })
+  ),
+  onDismiss: PropTypes.func.isRequired
+};
+Search.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  children: PropTypes.node
+};
+// End
 const largeColumn = {
   width: "40%"
 };
