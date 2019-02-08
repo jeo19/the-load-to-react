@@ -18,8 +18,8 @@ describe("App", () => {
 });
 describe("Search", () => {
   it("renders without crashing", () => {
-    // const div = document.createElement("div");
-    // ReactDOM.render(<Search />, div);
+    const div = document.createElement("div");
+    ReactDOM.render(<Search />, div);
     const wrapper = mount(<Search />);
     const element = wrapper.instance.input;
   });
