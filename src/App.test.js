@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App, { Search, Button, Table } from "./App";
 import renderer from "react-test-renderer";
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 Enzyme.configure({ adapter: new Adapter() });
 describe("App", () => {
@@ -18,8 +18,10 @@ describe("App", () => {
 });
 describe("Search", () => {
   it("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<Search />, div);
+    // const div = document.createElement("div");
+    // ReactDOM.render(<Search />, div);
+    const wrapper = mount(<Search />);
+    const element = wrapper.instance.input;
   });
   test("has a valid snapshot", () => {
     const component = renderer.create(<Search />);
@@ -32,7 +34,9 @@ describe("Table", () => {
     list: [
       { title: "1", author: "1", num_comments: 1, points: 2, objectID: "y" },
       { title: "2", author: "2", num_comments: 1, points: 2, objectID: "z" }
-    ]
+    ],
+    sortKey: "TITLE",
+    isSortReverse: false
   };
 
   it("Shows two item in list", () => {
