@@ -177,25 +177,11 @@ class App extends Component {
   }
 }
 class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentDidMount() {
-    this.input.focus();
-  }
   render() {
     const { value, onChange, onSubmit, children } = this.props;
     return (
       <form onSubmit={onSubmit}>
-        <input
-          type="Text"
-          onChange={onChange}
-          value={value}
-          ref={node => {
-            this.input = node;
-          }}
-        />
+        <input type="Text" onChange={onChange} value={value} />
         <button type="submit">{children}</button>
       </form>
     );

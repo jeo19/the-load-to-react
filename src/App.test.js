@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App, { Search, Button, Table } from "./App";
 import renderer from "react-test-renderer";
-import Enzyme, { shallow, mount } from "enzyme";
+import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 Enzyme.configure({ adapter: new Adapter() });
 describe("App", () => {
@@ -19,9 +19,8 @@ describe("App", () => {
 describe("Search", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<Search />, div);
-    const wrapper = mount(<Search />);
-    const element = wrapper.instance.input;
+    ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
   test("has a valid snapshot", () => {
     const component = renderer.create(<Search />);
