@@ -72,20 +72,23 @@ class App extends Component {
   // setSearchTopStories = result => this.setState(result);
   setSearchTopStories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
-    // const oldHits = page !== 0 ? this.state.result.hits : [];
-    const oldHits =
-      results && results[searchKey] ? results[searchKey].hits : [];
-    const updatedHits = [...oldHits, ...hits];
-    //   this.setState({
-    //     result: { hits: updatedHits, page }
-    //   });
-    // }
-    this.setState({
-      results: {
-        ...results,
-        [searchKey]: { hits: updatedHits, page }
-      }
+    this.setState(prevState => {
+      const { searchKey, results } = prevState;
+      // const oldHits = page !== 0 ? this.state.result.hits : [];
+      const oldHits =
+        results && results[searchKey] ? results[searchKey].hits : [];
+      const updatedHits = [...oldHits, ...hits];
+      //   this.setState({
+      //     result: { hits: updatedHits, page }
+      //   });
+      // }
+      return {
+        results: {
+          ...results,
+          [searchKey]: { hits: updatedHits, page }
+        },
+        isLoading: false
+      };
     });
   }
   fetchSearchTopStories(searchTerm, page = 0) {
@@ -111,7 +114,7 @@ class App extends Component {
   }
   render() {
     const { searchKey, results, searchTerm, error, isLoading } = this.state;
-    // console.log(results);
+    console.log(results);
     const page =
       (results && results[searchKey] && results[searchKey].page) || 0;
     // if (!result) {
